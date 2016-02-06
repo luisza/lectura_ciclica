@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content%}
+
+{% include 'encabezado.html' %}
+
+	
+{% for obj in obj_list%}	
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{obj.titulo }}</h3> 
+    
+  </div>
+  <div class="panel-body">
+    {{obj.descripcion}}
+    <hr>
+    <a class="btn btn-success" href="{{obj.archivo.url}}" > Descargar material</a>
+    {% if obj.sistematizacion%}
+    <a class="btn btn-danger" href="{{obj.sistematizacion.url}}" > Sistematización de la sesión</a>
+    {% endif %}
+  </div>
+  <div class="panel-footer"> 
+ <div class="row">
+ <div class="comment-control pull-right col-md-2"> 
+	 <div class="btn-group" role="group" aria-label="...">
+	  <button type="button" class="btn btn-default" onclick="ver('c{{obj.pk}}');">Ver</button>
+	  <button type="button" class="btn btn-default" onclick="ocultar('c{{obj.pk}}');">Ocultar</button>
+	</div>	
+	 
+ </div> 	
+  	
+ <div id="c{{obj.pk}}" class="col-md-10" class="comment"> 
+
+
+<div id="father_{{obj.pk}}" >
+    <div id="myList_{{obj.pk}}">
+    	{% include 'comentarios.html' %}
+    	
+    </div>
+    <div id="editList_{{obj.pk}}">
+        <form class="form-horizontal" action="{% url "crear_comentario" obj.pk%}" 
+        method="post" 
+        data-ajax-submit="" 
+              refresh="#myList_{{obj.pk}}" onsubmit="return false;">
+
+		{% csrf_token %}
+
+  <div class="form-group">
+    <label for="inombre" class="col-sm-2 control-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text" name="inombre" class="form-control" id="inombre" placeholder="Nombre">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="idcomentrio" name="icomentario" class="col-sm-2 control-label">Comentario</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="icomentario" id="icomentario" rows="10"></textarea>
+    </div>
+  </div>
+
+    <button class="btn btn-info"  type="submit" > Agregar comentario </button>
+
+        </form>
+    </div>
+
+</div>
+ </div>   	
+
+</div> 	
+ 	
+ 	<br><br>
+ </div>
+</div>
+<hr>
+{%endfor%}
+
+
+
+
+{% endblock %}
+
+
+
+{% block js %} 
+<script>
+function ver(identificador){
+	$("#"+identificador).show();
+}
+
+function ocultar(identificador){
+	$("#"+identificador).hide();
+}
+</script>
+
+
+<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'django_ajax/js/jquery.ajax-plugin.min.js' %}"></script>
+{% endblock %}

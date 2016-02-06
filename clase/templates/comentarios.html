@@ -1,0 +1,10 @@
+<ul class="list-group">
+	{% for comment in obj.comentarios.all %}
+  <li class="list-group-item"> 
+  	
+  	<h4 class="list-group-item-heading">{{comment.fecha}} -- {{comment.nombre}} </h4>
+    <p class="list-group-item-text">{{comment.texto}} </p>
+  	</li>
+  
+  {% endfor %}
+</ul>
