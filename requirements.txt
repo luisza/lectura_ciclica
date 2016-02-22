@@ -1,2 +1,3 @@
 djangoajax
 django
+django-wysiwyg-redactor

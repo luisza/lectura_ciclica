@@ -14,7 +14,7 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from clase.views import vista, crear_comentario
 urlpatterns = [
@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^crear_comentario/(?P<pk>\d+)$', crear_comentario, name="crear_comentario"),
     # url(r'^listar_comentario/(?P<pk>\d+)$', listar_comentario, name="listar_comentario"),
     url(r'^admin/', admin.site.urls),
+    url(r'^redactor/', include('redactor.urls')),
 ]
