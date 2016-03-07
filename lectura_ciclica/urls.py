@@ -17,10 +17,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from clase.views import vista, crear_comentario
+from django.contrib.auth import views
+
 urlpatterns = [
     url(r'^$', vista, name="home"),
-    url(r'^crear_comentario/(?P<pk>\d+)$', crear_comentario, name="crear_comentario"),
+    url(r'^crear_comentario/(?P<pk>\d+)$',
+        crear_comentario, name="crear_comentario"),
     # url(r'^listar_comentario/(?P<pk>\d+)$', listar_comentario, name="listar_comentario"),
     url(r'^admin/', admin.site.urls),
     url(r'^redactor/', include('redactor.urls')),
+    url(r'^login/$', views.login),
+    url(r'^site_logout/$', views.logout),
 ]

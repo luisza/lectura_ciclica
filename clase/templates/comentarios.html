@@ -2,9 +2,17 @@
 	{% for comment in obj.comentarios.all %}
   <li class="list-group-item"> 
   	
-  	<h4 class="list-group-item-heading">{{comment.fecha}} -- {{comment.nombre}} </h4>
+  	<h4 class="list-group-item-heading">{{comment.fecha}} -- {{comment.nombre}} @{{comment.usuario.username}} </h4>
     <p class="list-group-item-text">{{comment.texto}} </p>
   	</li>
   
   {% endfor %}
 </ul>
+
+{% if limpia %}
+
+<script>
+$("#father_{{pk}} #inombre").val("");
+$("#father_{{pk}} #icomentario").val("");
+</script>
+{% endif%}

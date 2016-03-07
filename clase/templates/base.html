@@ -17,6 +17,11 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="">{% block mitcu%} LA MERCANCÍA, LO MÁS CONCRETO DEL CAPITALISMO{% endblock %}</a>
     </div>
+      {% if user.is_anonymous %}
+      <a  class="btn btn-default navbar-btn navbar-right" href="{% url 'django.contrib.auth.views.login' %}">Ingresar</a>
+      {% else %}
+      <a  class="btn btn-default navbar-btn navbar-right" href="{% url 'django.contrib.auth.views.logout' %}?next=/">Salir</a>
+      {% endif %}
 
   </div>
 </nav>
