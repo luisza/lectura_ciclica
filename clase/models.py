@@ -9,7 +9,7 @@ from django.conf import settings
 @python_2_unicode_compatible
 class Comentario(models.Model):
     nombre = models.CharField(max_length=150, null=True)
-    texto = models.CharField(max_length=512)
+    texto = models.CharField(max_length=1030)
     fecha = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True)

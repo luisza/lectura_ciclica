@@ -2,7 +2,7 @@
 	{% for comment in obj.comentarios.all %}
   <li class="list-group-item"> 
   	
-  	<h4 class="list-group-item-heading">{{comment.fecha}} -- {{comment.nombre}} @{{comment.usuario.username}} </h4>
+  	<h4 class="list-group-item-heading">{{comment.fecha}} -- @{{comment.usuario.username}} </h4>
     <p class="list-group-item-text">{{comment.texto}} </p>
   	</li>
   
@@ -12,7 +12,7 @@
 {% if limpia %}
 
 <script>
-$("#father_{{pk}} #inombre").val("");
 $("#father_{{pk}} #icomentario").val("");
+$("#father_{{pk}} .sumcoment").html("0");
 </script>
 {% endif%}

@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def crear_comentario(request, pk):
     sesion = Sesion.objects.get(pk=pk)
     comentario = Comentario(
-        nombre=request.POST.get('inombre'),
+        nombre="no se usa mas",
         texto=request.POST.get('icomentario')
     )
     comentario.usuario = request.user
